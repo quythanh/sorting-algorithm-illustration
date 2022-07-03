@@ -1,0 +1,24 @@
+header {
+    padding: 20px;
+    min-height: 91px;
+    color: #28eafe;
+    border-bottom: 1px solid #162345;
+
+    display: flex;
+    align-items: center;
+}
+
+input {
+    color: #fff;
+    background-color: #162345;
+}
+
+input:focus {
+    border-color: #28eafe;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

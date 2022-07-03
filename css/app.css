@@ -1,0 +1,30 @@
+#illu, #code {
+    display: inline-block;
+}
+
+#illu {
+    width: calc(200%/3);
+}
+
+.num-box {
+    display: inline-block;
+    position: absolute;
+    top: calc(50% - 91px);
+    left: calc(var(--i)*70px + 10px);
+    transform: translateY(-50%);
+    
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: #001f6f;
+    transition: 1s all ease;
+}
+
+.num-box > span {
+    display: flex;
+    justify-content: center;
+
+    font-size: 24px;
+    color: #28eafe;
+    line-height: 60px;
+}
