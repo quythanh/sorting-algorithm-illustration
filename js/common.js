@@ -3,13 +3,15 @@ const render = (listNum) => {
     listNum.forEach((num, index) => {
         html += `<div class="num-box" style="--i: ${index};"><span>${num}</span></div>`;
     })
-    illuSection.innerHTML = html;
+    $('#illu').html(html);
 }
 
-const setPos = (el, x, y) => {
+const setPos = (el, x, y = null) => {
     el.style.left = x + 'px';
-    el.style.top = y - 91 + 'px'; // -91px of header
-    el.style.transform = 'translateY(0)';
+    if (y == null)
+        el.style.top = null;
+    else
+        el.style.top = y - 91 + 'px'; // -91px of header
 }
 
 const generateList = () => {
@@ -34,12 +36,12 @@ const SwapUI = (box1, box2) => {
     }, 2000)
     
     setTimeout(() => {
-        setPos(box1, r2.x, r2.y);
-        setPos(box2, r1.x, r1.y);
+        setPos(box1, r2.x);
+        setPos(box2, r1.x);
         if (auto_next == false)
             document.querySelector('#next-step').addEventListener('click', ControlsNextStep);
         else
-            SelectionSort(boxes, listNum);
+            SortFunction(boxes, listNum);
     }, 3000)
 }
 
@@ -49,16 +51,55 @@ const init = () => {
     varLoop.i = 0;
     varLoop.j = 1;
     auto_next = false;
+    SortFunction = SelectionSort;
 
-
-    illuSection.innerHTML = '';
-    codeSection.innerHTML = '';
+    $('#app').html('');
 
     header.innerHTML = `
-        <div style="display: flex; align-items: center;">
-            <span style="margin-right: 10px; font-size: 18px;">Nhập số lượng phần tử</span>
-            <input type="number" id="quantity" min="2" max="15">
-            <button style="margin-left: 10px;" id="generate">Khởi tạo mảng</button>
-        </div>
+        <form class="header__form">
+            <div>
+                <input type="number" class="form__input" id="quantity" min="2" max="15" placeholder="Nhập số phần tử" required>
+            </div>
+        
+            <div>
+                <button type="submit" class="form__button" id="generate"><i class="fa-light fa-play"></i></button>
+            </div>
+
+            <div>
+                <select class="form__select" id="algorithm" required>
+                    <option value="" hidden selected>Chọn thuật toán:</option>
+                    <option value="selection">Selection Sort</option>
+                    <option value="interchange">Interchange Sort</option>
+                </select>
+            </div>
+        </form>
     `;
+
+    $('.header__form').submit(e => {
+        e.preventDefault();
+        let inp = $('#quantity').val();
+        let alg = $('#algorithm').val();
+        
+        $('#app').html('<div id="illu"></div><div id="code"></div>');
+
+        n = inp - 0;
+        generateList();
+        render(listNum);
+        boxes = [...document.querySelectorAll('.num-box')];
+
+        $.getJSON('./data/code.json', data => $('#code').html(`<pre><cpp>${data[alg]}</cpp></pre>`))
+
+        switch (alg) {                
+            default:
+            case "selection":
+                SortFunction = SelectionSort;
+                break;
+                
+            case "interchange":
+                SortFunction = InterchangeSort;
+                break;
+        }
+
+        renderControls();
+    })
 }

@@ -6,19 +6,57 @@ header {
 
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
-input {
+.header__form {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.header__form > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form__label {
+    font-size: 18px;
+}
+
+.form__input {
     color: #fff;
     background-color: #162345;
+
+    width: 155px;
 }
 
-input:focus {
+.form__input:focus {
     border-color: #28eafe;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.form__input::-webkit-outer-spin-button,
+.form__input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.form__button {
+    width: 50px;
+    min-width: unset;
+    color: #fff;
+    background-color: #00e5a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__select {
+    color: #28eafe;
+    background: transparent;
+}
+
+option {
+    background: transparent;
 }

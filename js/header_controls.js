@@ -1,21 +1,23 @@
 function ControlsNextStep() {
     document.querySelector('#next-step').removeEventListener('click', ControlsNextStep);
-    SelectionSort(boxes, listNum);
+    SortFunction(boxes, listNum);
 }
 
 function ControlsQuit() {
     document.querySelector('#quit').removeEventListener('click', ControlsQuit);
-    start();
+    init();
 }
 
 function ControlsAutoNext() {
+    document.querySelector('#next-step').removeEventListener('click', ControlsNextStep);
     document.querySelector('#auto-next').removeEventListener('click', ControlsAutoNext);
     document.querySelector('#stop-auto').addEventListener('click', ControlsStopAuto);
     auto_next = true;
-    SelectionSort(boxes, listNum);
+    SortFunction(boxes, listNum);
 }
 
 function ControlsStopAuto() {
+    document.querySelector('#next-step').addEventListener('click', ControlsNextStep);
     document.querySelector('#auto-next').addEventListener('click', ControlsAutoNext);
     document.querySelector('#stop-auto').removeEventListener('click', ControlsStopAuto);
     auto_next = false;
