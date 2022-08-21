@@ -1,43 +1,77 @@
-#code {
+#debug {
     height: 100%;
     float: right;
     width: calc(100%/3);
     
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     font-size: 16px;
-    padding-top: 20px;
 
     border-left: 1px solid #162345;
 }
 
-cpp {
+#code, #expl, #var {
+    width: 100%;
+    display: flex;
+
+    padding: 20px 0;
+}
+
+#code, #expl {
+    border-bottom: 1px solid #162345;
+}
+
+#expl, #var {
+    align-items: center;
+    flex-direction: column;
+}
+
+#code {
+    justify-content: center;
+}
+
+#expl {
+    color: #fff;
+}
+#expl .true {
+    color: #5af864;
+}
+#expl .false {
+    color: #f85a5a;
+}
+
+#var {
+    gap: 10px;
+}
+
+.cpp {
     color: #fff;
     font-family: monospace;
     white-space: pre;
 }
 
-cpp p {
+.cpp p {
     position: relative;
     padding-right: 20px;
     padding-left: calc(var(--tab) * 40px + 20px + 20px);
     margin-bottom: 2px;
 }
 
-cpp p::before {
+.cpp p::before {
     content: attr(line);
     position: absolute;
     left: 8px;
     color: #7b7f8b;
 }
 
-cpp p.highlight {
+.cpp p.highlight {
     border-top: 1px solid #33cc6b;
     border-bottom: 1px solid #33cc6b;
     background-color: #16461e;
 }
 
-cpp p.highlight::before {
+.cpp p.highlight::before {
     color: #c6c6bd;
 }

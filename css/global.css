@@ -10,6 +10,7 @@ body {
     width: 100%;
     min-height: 100vh;
     background-image: linear-gradient(to bottom, #0f0e14, #06166b);
+    overflow: hidden;
 }
 
 button {
@@ -29,7 +30,7 @@ input, button, select {
 }
 
 #app {
-    height: 100vh;
+    height: calc(100vh - 91px);
     position: relative;
     color: #28eafe;
 }
