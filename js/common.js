@@ -36,6 +36,7 @@ const SwapUI = (box1, box2) => {
     setTimeout(() => {
         addClick('#next-step', HandleNextStep);
         addClick('#next-swap', HandleNextSwap);
+        addClick('#auto-next', ControlsAutoNext);
     }, 4000)
 }
 
